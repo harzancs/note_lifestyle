@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "58990726178",
+    "firebase_url": "https://harzan-c130e.firebaseio.com",
+    "project_id": "harzan-c130e",
+    "storage_bucket": "harzan-c130e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58990726178:android:95126a54d8dedc80",
+        "android_client_info": {
+          "package_name": "com.example.testfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58990726178-s8vlkfjg5gjjth509vv5as8utkbcb44n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlNCle3EDO_3Ljwlff3ow9dKkoOPQq-mI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58990726178-s8vlkfjg5gjjth509vv5as8utkbcb44n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58990726178:android:f6e841f29d437893",
+        "android_client_info": {
+          "package_name": "com.example.zanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58990726178-s8vlkfjg5gjjth509vv5as8utkbcb44n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlNCle3EDO_3Ljwlff3ow9dKkoOPQq-mI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58990726178-s8vlkfjg5gjjth509vv5as8utkbcb44n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
