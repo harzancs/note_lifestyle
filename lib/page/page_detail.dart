@@ -50,7 +50,7 @@ class _Page_DetailState extends State<Page_Detail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           //contentPadding: EdgeInsets.all(16.0),
           content: Container(
-            height: MediaQuery.of(context).size.height / 2.2,
+            height: MediaQuery.of(context).size.height / 2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,10 +112,10 @@ class _Page_DetailState extends State<Page_Detail> {
                               validator: (val) =>
                                   val.isEmpty ? 'Input Price' : null,
                               controller: taskDescripInputController,
-                              maxLines: 5,
+                              maxLines: 4,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(5),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -252,143 +252,147 @@ class _Page_DetailState extends State<Page_Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 180,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/bg_detail.jpeg'),
-                            fit: BoxFit.cover),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 30.0,
+        resizeToAvoidBottomPadding: true,
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 180,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/bg_detail.jpeg'),
+                                fit: BoxFit.cover),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 30.0,
+                              ),
+                            ]),
+                        width: MediaQuery.of(context).size.width,
+                        height: 150,
+                        child: Center(
+                            child: StreamBuilder(
+                          stream: Firestore.instance
+                              .collection('text_note')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Text('กำลังโหลด . . .',
+                                  style: TextStyle(
+                                      fontFamily: FontStyles().fontFamily,
+                                      fontSize: 18));
+                            } else {
+                              // เก็บข้อมูลสำหรับส่งต่อ
+
+                              doc_ID = snapshot.data
+                                  .documents[widget.numberIndex].documentID;
+                              _text_topic = snapshot
+                                  .data.documents[widget.numberIndex]['topic'];
+                              _text_detail = snapshot
+                                  .data.documents[widget.numberIndex]['detail'];
+
+                              //
+                              return Container(
+                                child: Center(
+                                    child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20),
+                                    ),
+                                    Text(
+                                      _text_topic,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 24.0,
+                                          fontFamily: FontStyles().fontFamily,
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(2, 3),
+                                              color: Colors.white,
+                                              blurRadius: 4.0,
+                                            ),
+                                          ]),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(15),
+                                    ),
+                                    Text(
+                                      snapshot.data
+                                              .documents[widget.numberIndex]
+                                          ['time'],
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16.0,
+                                          fontFamily: FontStyles().fontFamily,
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(2, 3),
+                                              color: Colors.white,
+                                              blurRadius: 1.0,
+                                            ),
+                                          ]),
+                                    ),
+                                  ],
+                                )),
+                              );
+                            }
+                          },
+                        )),
+                      ),
+                      Positioned(
+                        top: 30.0,
+                        left: 0.0,
+                        right: 350.0,
+                        child: FlatButton(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
                           ),
-                        ]),
-                    width: MediaQuery.of(context).size.width,
-                    height: 150,
-                    child: Center(
-                        child: StreamBuilder(
-                      stream: Firestore.instance
-                          .collection('text_note')
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Text('กำลังโหลด . . .',
-                              style: TextStyle(
-                                  fontFamily: FontStyles().fontFamily,
-                                  fontSize: 18));
-                        } else {
-                          // เก็บข้อมูลสำหรับส่งต่อ
-
-                          doc_ID = snapshot
-                              .data.documents[widget.numberIndex].documentID;
-                          _text_topic = snapshot
-                              .data.documents[widget.numberIndex]['topic'];
-                          _text_detail = snapshot
-                              .data.documents[widget.numberIndex]['detail'];
-
-                          //
-                          return Container(
-                            child: Center(
-                                child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.all(20),
-                                ),
-                                Text(
-                                  _text_topic,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 24.0,
-                                      fontFamily: FontStyles().fontFamily,
-                                      shadows: [
-                                        Shadow(
-                                          offset: Offset(2, 3),
-                                          color: Colors.white,
-                                          blurRadius: 4.0,
-                                        ),
-                                      ]),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(15),
-                                ),
-                                Text(
-                                  snapshot.data.documents[widget.numberIndex]
-                                      ['time'],
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16.0,
-                                      fontFamily: FontStyles().fontFamily,
-                                      shadows: [
-                                        Shadow(
-                                          offset: Offset(2, 3),
-                                          color: Colors.white,
-                                          blurRadius: 1.0,
-                                        ),
-                                      ]),
-                                ),
-                              ],
-                            )),
-                          );
-                        }
-                      },
-                    )),
-                  ),
-                  Positioned(
-                    top: 30.0,
-                    left: 0.0,
-                    right: 350.0,
-                    child: FlatButton(
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageWelcome()),
+                            );
+                          },
+                        ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PageWelcome()),
-                        );
-                      },
-                    ),
-                  ),
-                  Positioned(
-                    top: 105.0,
-                    left: 320.0,
-                    right: 0.0,
-                    child: IconButton(
-                      tooltip: 'edit',
-                      icon: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: 26,
+                      Positioned(
+                        top: 105.0,
+                        left: 320.0,
+                        right: 0.0,
+                        child: IconButton(
+                          tooltip: 'edit',
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                            size: 26,
+                          ),
+                          onPressed: () {
+                            _showDialog_UPDATE(
+                                doc_ID, _text_detail, _text_topic);
+                            print("your menu action here");
+                          },
+                        ),
                       ),
-                      onPressed: () {
-                        _showDialog_UPDATE(doc_ID, _text_detail, _text_topic);
-                        print("your menu action here");
-                      },
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  child: Column(
+                    children: <Widget>[
+                      readDataFormStore(),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              child: Column(
-                children: <Widget>[
-                  readDataFormStore(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

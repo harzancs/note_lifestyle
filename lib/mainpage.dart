@@ -47,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Text(
                     "ไม่พบข้อมูล",
-                    style: TextStyle(fontSize: 24.0,fontFamily: FontStyles().fontFamily),
+                    style: TextStyle(
+                        fontSize: 24.0, fontFamily: FontStyles().fontFamily),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
@@ -90,16 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  void _nextPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PageWelcome()),
-    );
-  }
-
   void _loginPerson() {
     if (_username == 'admin' && _password == '12345') {
-      _nextPage(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PageWelcome()),
+      );
     } else {
       _showPopupEmply();
     }
@@ -118,135 +115,148 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/bg_login.jpeg'),
-              fit: BoxFit.cover),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(30),
-              child: Column(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        'BOOK',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue,
-                          fontFamily: FontStyles().fontFamily,
-                        ),
-                      ),
-                      Icon(
-                        Icons.hourglass_empty,
-                        size: 80,
-                        color: Colors.blue,
-                      ),
-                      Text(
-                        'Life Style',
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.blue,
-                          fontFamily: FontStyles().fontFamily,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                  ),
-                  Form(
-                    key: formKey,
-                    child: Column(
-                      children: <Widget>[
-                        SingleChildScrollView(
-                          child: Column(
+        body: Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.height * 1,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/bg_login.jpeg'),
+                  fit: BoxFit.cover),
+            ),
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.all(50)),
+                    Container(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        children: <Widget>[
+                          Column(
                             children: <Widget>[
-                              TextFormField(
-                                style: TextStyle(fontSize: 18),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white.withOpacity(0.4),
-                                  icon: Icon(Icons.person, size: 30),
-                                  hintText: 'USERNAME',
-                                  hintStyle: TextStyle(
-                                      fontFamily: FontStyles().fontFamily),
-                                  border: UnderlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0))),
+                              Text(
+                                'BOOK',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.blue,
+                                  fontFamily: FontStyles().fontFamily,
                                 ),
-                                controller: myNodeUsername,
-                                keyboardType: TextInputType.text,
-                                onSaved: (String val) => _username = val,
-                                validator: (val) =>
-                                    val.isEmpty ? 'Input Username' : null,
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(5),
+                              Icon(
+                                Icons.hourglass_empty,
+                                size: 80,
+                                color: Colors.blue,
                               ),
-                              TextFormField(
-                                style: TextStyle(fontSize: 18),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white.withOpacity(0.4),
-                                  icon: Icon(Icons.vpn_key, size: 30),
-                                  hintText: 'PASSWORD',
-                                  hintStyle: TextStyle(
-                                      fontFamily: FontStyles().fontFamily),
-                                  border: UnderlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0))),
+                              Text(
+                                'Life Style',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.blue,
+                                  fontFamily: FontStyles().fontFamily,
                                 ),
-                                controller: myNodePassword,
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                onSaved: (val) => _password = val,
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(10),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0)),
-                                    color: Colors.blue,
-                                    onPressed: () {
-                                      _submit();
-                                      myNodePassword.clear();
-                                    },
-                                    child: Row(children: <Widget>[
-                                      Text(
-                                        'LOG IN',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontFamily:
-                                                FontStyles().fontFamily),
-                                      )
-                                    ]),
-                                  ),
-                                ],
-                              )
                             ],
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.all(20),
+                          ),
+                          Form(
+                            key: formKey,
+                            child: Column(
+                              children: <Widget>[
+                                SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      TextFormField(
+                                        style: TextStyle(fontSize: 18),
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor:
+                                              Colors.white.withOpacity(0.4),
+                                          icon: Icon(Icons.person, size: 30),
+                                          hintText: 'USERNAME',
+                                          hintStyle: TextStyle(
+                                              fontFamily:
+                                                  FontStyles().fontFamily),
+                                          border: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0))),
+                                        ),
+                                        controller: myNodeUsername,
+                                        keyboardType: TextInputType.text,
+                                        onSaved: (String val) =>
+                                            _username = val,
+                                        validator: (val) => val.isEmpty
+                                            ? 'Input Username'
+                                            : null,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(5),
+                                      ),
+                                      TextFormField(
+                                        style: TextStyle(fontSize: 18),
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor:
+                                              Colors.white.withOpacity(0.4),
+                                          icon: Icon(Icons.vpn_key, size: 30),
+                                          hintText: 'PASSWORD',
+                                          hintStyle: TextStyle(
+                                              fontFamily:
+                                                  FontStyles().fontFamily),
+                                          border: UnderlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0))),
+                                        ),
+                                        controller: myNodePassword,
+                                        keyboardType: TextInputType.text,
+                                        obscureText: true,
+                                        onSaved: (val) => _password = val,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(10),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0)),
+                                            color: Colors.blue,
+                                            onPressed: () {
+                                              _submit();
+                                              myNodePassword.clear();
+                                            },
+                                            child: Row(children: <Widget>[
+                                              Text(
+                                                'LOG IN',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontFamily: FontStyles()
+                                                        .fontFamily),
+                                              )
+                                            ]),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            )));
   }
 }

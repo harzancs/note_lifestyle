@@ -366,7 +366,8 @@ class _PageWelcomeState extends State<PageWelcome> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width / 3.5,
+                                  width:
+                                      MediaQuery.of(context).size.width / 3.5,
                                   child: FlatButton(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -386,7 +387,8 @@ class _PageWelcomeState extends State<PageWelcome> {
                                   width: 3,
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width / 3.5,
+                                  width:
+                                      MediaQuery.of(context).size.width / 3.5,
                                   child: FlatButton(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -554,8 +556,9 @@ class _PageWelcomeState extends State<PageWelcome> {
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
-        body: Container(
-            child: Column(children: <Widget>[
+        body: SingleChildScrollView(
+            child: Container(
+                child: Column(children: <Widget>[
           Container(
             height: 180.0,
             child: Stack(
@@ -563,7 +566,7 @@ class _PageWelcomeState extends State<PageWelcome> {
                 Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('assets/images/bg_banner.jpeg'),
+                          image: AssetImage('assets/images/bg_detail1.jpg'),
                           fit: BoxFit.cover),
                       boxShadow: [
                         BoxShadow(
@@ -617,30 +620,33 @@ class _PageWelcomeState extends State<PageWelcome> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(9),
+                            padding: EdgeInsets.all(10),
                           ),
-                          Expanded(
-                            child: TextField(
-                              onChanged: (val) {
-                                insertSearch(val);
-                                _searchText = val;
-                              },
-                              decoration: InputDecoration(
-                                  hintText: "Search",
-                                  hintStyle: TextStyle(
-                                      fontFamily: FontStyles().fontFamily)),
-                            ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width *.7,
                           ),
-                          IconButton(
-                            tooltip: 'search document',
-                            icon: Icon(
-                              Icons.search,
-                              color: Colors.blue,
-                            ),
-                            onPressed: () {
-                              print("your menu action here");
-                            },
-                          ),
+                          // Expanded(
+                          //   // child: TextField(
+                          //   //   onChanged: (val) {
+                          //   //     insertSearch(val);
+                          //   //     _searchText = val;
+                          //   //   },
+                          //   //   decoration: InputDecoration(
+                          //   //       hintText: "Search",
+                          //   //       hintStyle: TextStyle(
+                          //   //           fontFamily: FontStyles().fontFamily)),
+                          //   // ),
+                          // ),
+                          // IconButton(
+                          //   tooltip: 'search document',
+                          //   icon: Icon(
+                          //     Icons.search,
+                          //     color: Colors.blue,
+                          //   ),
+                          //   onPressed: () {
+                          //     print("your menu action here");
+                          //   },
+                          // ),
                           IconButton(
                             tooltip: 'add document',
                             icon: Icon(
@@ -666,6 +672,6 @@ class _PageWelcomeState extends State<PageWelcome> {
               readingFormStore(),
             ],
           )),
-        ])));
+        ]))));
   }
 }
